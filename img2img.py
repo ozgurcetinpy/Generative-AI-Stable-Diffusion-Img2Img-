@@ -5,7 +5,6 @@ import base64
 
 url = "http://127.0.0.1:7860"
 
-
 img_payload = {
     "prompt": "kraft coffee cup, sunny day background, black cover ",
     "init_images": ["https://img.fruugo.com/product/6/99/659457996_max.jpg"],
@@ -25,17 +24,14 @@ if response.status_code == 200:
 else:
     print("API isteği başarısız oldu. HTTP kodu:", response.status_code)
 
-
-# Image
 generated_image_url = r"C:\Users\ozgur\stable-diffusion-webui-master\output.png"
 generated_image = Image.open(generated_image_url)
 
-# Logo
-logo_path = r"C:\Users\ozgur\stable-diffusion-webui-master\images\backtonature.jpeg"
+logo_path = r"C:\Users\ozgur\stable-diffusion-webui-master\backtonature.jpeg"
 logo = Image.open(logo_path)
 logo = logo.resize((250, 150))
 
-# Text and Colors
+
 punchline_text = "AI ad banners lead to higher \n conversions ratesxxxx"
 button_text = "Call to action test here!  >"
 button_color = "#FF5733"
@@ -46,14 +42,12 @@ ad_template.paste(generated_image, (0, 120))
 
 draw = ImageDraw.Draw(ad_template)
 
-# Punchline Text
 font_size_punchline = 25
 font_punchline = ImageFont.truetype("arial.ttf", font_size_punchline)
 text_width, text_height = 300,20
 text_position = ((generated_image.width - text_width) / 2, generated_image.height + 10)
 draw.text(text_position, punchline_text, fill='black', font=font_punchline)
 
-# Call-to-Action Button
 button_font = ImageFont.truetype("arial.ttf", 30)
 button_size = (350, 30)
 button_width, button_height = button_size
@@ -63,5 +57,5 @@ draw.rectangle([button_x - 10, button_y - 10, button_x + button_width + 10, butt
                fill=button_color)
 draw.text((button_x, button_y), button_text, fill='white', font=button_font)
 
-# Save the final ad template
+
 ad_template.save('advertisement.png')
